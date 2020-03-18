@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {injectGlobal} from 'emotion'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+injectGlobal`
+  * {
+    font-family: 微軟正黑體;
+  }
+`
+export const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    margin: 'auto',
+    width: '70vw',
+    maxWidth: '700px',
+    '@media (max-width: 700px)': {
+      width: '95vw'
+    }
+  }
 }
-
-export default App;
