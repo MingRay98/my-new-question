@@ -1,5 +1,5 @@
 export const styles = {
-  containters: {
+  container: {
     color: 'white',
   },
 }

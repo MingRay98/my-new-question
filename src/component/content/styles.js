@@ -1,5 +1,5 @@
 export const styles = {
-  containter: {
+  container: {
     height: '90%',
     width: '100%',
     backgroundImage: 'linear-gradient(47deg,#59398b,#994329)',
@@ -11,6 +11,6 @@ export const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '100%',
+    height: 'inherit',
   }
 }

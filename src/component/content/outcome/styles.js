@@ -1,9 +1,13 @@
 export const styles = {
-  containter: {
-    height: '90%',
+  container: {
+    textAlign: 'center',
+    color: 'white',
     width: '100%',
-    backgroundImage: 'linear-gradient(47deg,#59398b,#994329)',
     margin: 'auto auto',
-    borderRadius: '25px'
+    textShadow: '2px 2px rgb(20,20,20)',
+    fontSize: '2rem',
+    '@media (max-width: 700px)': {
+      fontSize: '1.5rem'
+    }
   },
 }

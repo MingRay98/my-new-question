@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {css} from 'emotion';
 import {styles} from './styles';
 import Input from './input/Input'
-import {Question} from './question/Question'
+import Question from './question/Question'
 import {Outcome} from './outcome/Outcome'
 
 
@@ -36,7 +36,7 @@ class Content extends Component {
   render() {
     const {haveName, finish, name, score} = this.state;
     return (
-      <div className={css(styles.containter)}>
+      <div className={css(styles.container)}>
         <div id='innerContainer' style={styles.innerContainer}>
           {!haveName && <Input handleSubmit={this.setName} />}
           {haveName && !finish && <Question handleScore={this.setScore} handleFinish={this.setFinsih} />}

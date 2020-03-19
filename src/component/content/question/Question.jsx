@@ -1,73 +1,83 @@
 import React, {Component, useState, useContext, useEffect} from 'react';
 import topic from './topic';
+import {css} from 'emotion';
+import {styles} from './styles';
 
+const initialState = {
+  question: topic[1],
+  userAns: '',
+  correctAns: null
+}
 
-let topicIndex = 1;
-let ansElement;
+class Question extends Component {
+  constructor(props) {
+    super(props);
+    this.state = initialState;
+    this.topicIndex = 1;
+    this.ansElement = null;
+  }
 
-export const Question = (props) => {
+  handleOnChange = (e) => {
+    const ans = e.target.value
+    this.setState((ps) => ({...ps, userAns: ans}))
+  }
 
+  handleSubmit = (e) => {
+    const {userAns, question} = this.state;
+    if (userAns === question.ans) {
+      this.setState((ps) => ({...ps, correctAns: true}))
+    } else {
+      this.setState((ps) => ({...ps, correctAns: false}))
+    }
+    e.preventDefault();
+  }
 
-
-  const handleLabelStyle = (para) => {
+  handleLabelStyle = (para) => {
+    const {question, correctAns} = this.state
     if (String(para) === question.ans) {
       if (correctAns === true) return {backgroundColor: 'green'}
       if (correctAns === false) return {backgroundColor: 'red'}
     }
   }
 
-  const [question, setQuestion] = useState(topic[1])
-  const [userAns, setUserAns] = useState('');
-  const [correctAns, setCorrectAns] = useState(null)
-
-  const title = question.title;
-  const QA = question.option.map((title, index) =>
-    <div>
-      <input key={index} type="radio" name="question" value={index + 1}
-        ref={(inputElement) => index + 1 === parseInt(userAns) && (ansElement = inputElement)}
-        onChange={(e) => handleOnChange(e)} required />
-      <label style={handleLabelStyle(index + 1)}>
-        {title}
-      </label>
-    </div>
-  )
-
-  const handleOnChange = (e) => {
-    setUserAns(e.target.value)
-  }
-
-  const handleSubmit = (e) => {
-
-    if (userAns === question.ans) {
-      setCorrectAns(true)
+  handleNextBtn = () => {
+    const {question, userAns} = this.state
+    if (this.topicIndex !== 10) {
+      this.topicIndex = this.topicIndex + 1;
+      this.setState((ps) => ({...ps, correctAns: null}))
+      this.setState((ps) => ({...ps, question: topic[this.topicIndex]}))
+      this.ansElement.checked = false;
+      userAns === question.ans && this.props.handleScore()
     } else {
-      setCorrectAns(false)
-    }
-    e.preventDefault();
-  }
-
-  let handleNextBtn = () => {
-    if (topicIndex !== 10) {
-      topicIndex = topicIndex + 1;
-      setCorrectAns(null)
-      setQuestion(topic[topicIndex])
-      ansElement.checked = false;
-      userAns === question.ans && props.handleScore()
-    } else {
-      userAns === question.ans && props.handleScore()
-      props.handleFinish();
+      userAns === question.ans && this.props.handleScore()
+      this.props.handleFinish();
     }
   }
 
-  return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <p>{title}</p>
+  render() {
+
+    const {question, userAns, correctAns} = this.state;
+    const title = question.title;
+    const QA = question.option.map((title, index) =>
+      <div>
+        <input key={index} type="radio" name="question" value={index + 1}
+          ref={(inputElement) => index + 1 === parseInt(userAns) && (this.ansElement = inputElement)}
+          onChange={(e) => this.handleOnChange(e)} required disabled={correctAns === null ? false : true} />
+        <label style={this.handleLabelStyle(index + 1)}>
+          {title}
+        </label>
+      </div>
+    )
+
+    return (
+      <form className={css(styles.container)} onSubmit={this.handleSubmit}>
+        <p className={css(styles.title)}>{title}</p>
         {QA}
-        {correctAns === null && <input className='btn btn-primary' type="submit" value="Submit" />}
-        {correctAns !== null && < button className='btn btn-dark' onClick={handleNextBtn} > Next</button>}
+        {correctAns === null && <input className='btn btn-dark' style={styles.submitBtn} type="submit" value="提交" />}
+        {correctAns !== null && < button className='btn btn-dark' style={styles.submitBtn} onClick={this.handleNextBtn} >下一題</button>}
       </form>
-    </>
-  )
-
+    );
+  }
 }
+
+export default Question;
