@@ -3,13 +3,22 @@ import Header from './component/header/Header';
 import {css} from 'emotion';
 import {styles} from './App.js'
 import Content from './component/content/Content';
+import {signOut, sign, getData} from './api/api'
 
 
 const App = (props) => {
 
   const [height, setHeight] = useState(window.innerHeight)
+  const [resultList, setList] = useState(null)
+
+
   useEffect(() => {
+    sign();
+    setList(getData())
+    return () => signOut()
   }, [])
+
+
 
   window.addEventListener('resize', () => {
     setHeight(window.innerHeight)
@@ -17,8 +26,8 @@ const App = (props) => {
 
   return (
     <div id="mainContainer" className={css(styles.container)} style={{height: height + 'px'}} >
-      <Header></Header>
-      <Content></Content>
+      <Header />
+      <Content resultList={resultList} />
     </div>
   );
 }
