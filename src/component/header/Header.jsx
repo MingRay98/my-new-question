@@ -34,7 +34,7 @@ class Header extends Component {
         <div className={css(stlyes.container)}>
           <div className={css(stlyes.container.icon)} onClick={this.setMenuOpen}>☰</div>
           <div className={css(stlyes.container.icon)}>{changeLanguage ? 'How Mochi with Tom Cruise' : "你跟吳彥祖的麻吉度"} </div>
-          <div className={css(stlyes.container.icon)} onClick={this.setChangeLanguage}>🌐</div>
+          <span className={css(stlyes.container.icon)} onClick={this.setChangeLanguage} role="img" aria-label="language">🌐</span>
         </div>
         {menuOpen && <Menu resultList={resultList} />}
       </>

@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {css} from 'emotion';
 import {styles} from './styles';
 import {creatData} from '../../../api/api'
@@ -9,7 +9,7 @@ export const Outcome = (props) => {
 
   useEffect(() => {
     creatData(props.name, props.score, props.incorrectQuestion)
-  }, [])
+  }, [props.incorrectQuestion, props.name, props.score])
 
   useEffect(() => {
     if (props.resultList !== null)

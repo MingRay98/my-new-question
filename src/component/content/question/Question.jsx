@@ -1,4 +1,4 @@
-import React, {Component, useState, useContext, useEffect} from 'react';
+import React, {Component} from 'react';
 import topic from './topic';
 import {css} from 'emotion';
 import {styles} from './styles';

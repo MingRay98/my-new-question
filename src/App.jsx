@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import Header from './component/header/Header';
 import {css} from 'emotion';
 import {styles} from './App.js'
