@@ -43,7 +43,7 @@ class Question extends Component {
 
   handleNextBtn = () => {
     const {question, userAns} = this.state
-    if (this.topicIndex !== 10) {
+    if (this.topicIndex !== 2) {
       this.topicIndex = this.topicIndex + 1;
       this.setState((ps) => ({...ps, correctAns: null}))
       this.setState((ps) => ({...ps, question: topic[this.topicIndex]}))

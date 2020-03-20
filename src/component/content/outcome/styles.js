@@ -10,5 +10,12 @@ export const styles = {
     '@media (max-width: 700px)': {
       fontSize: '1.5rem'
     }
-  },
+  },score:{
+    textShadow: 'none',
+    fontSize: '1.5rem',
+    textAlign: 'left',
+    '@media (max-width: 700px)': {
+      fontSize: '1.2rem'
+    }
+  }
 }

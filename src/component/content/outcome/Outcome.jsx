@@ -3,6 +3,8 @@ import {css} from 'emotion';
 import {styles} from './styles';
 import {creatData} from '../../../api/api'
 
+let orderList
+
 export const Outcome = (props) => {
 
   const [scoreList, setScoreList] = useState(null)
@@ -12,13 +14,14 @@ export const Outcome = (props) => {
   }, [props.incorrectQuestion, props.name, props.score])
 
   useEffect(() => {
-    if (props.resultList !== null)
+    if (props.resultList !== null) {
+      orderList = Object.entries(props.resultList).sort((b, a) => a[1].score - b[1].score);
       setScoreList(
-        props.resultList.map((people) =>
-          Object.entries(people).map((item) =>
-            <div>{item[0]}的分數: {item[1].score}</div>
-          ))
+        Object.entries(orderList[0][1]).map((item) =>
+          <div>{item[0]}的分數: {item[1].score}</div>
+        )
       )
+    }
   }, [props.resultList])
 
   const level = () => {
@@ -37,7 +40,9 @@ export const Outcome = (props) => {
       <div>結束評語:
         <p style={{color: 'rgb(255, 33, 44)'}}>{level()}</p>
       </div>
-      <div>{scoreList}</div>
+      <div className={css(styles.score)}>
+        {scoreList}
+      </div>
     </div>
   )
 }
