@@ -13,8 +13,10 @@ const Input = (props) => {
   return (
     <div style={styles.container}>
       <form onSubmit={(e) => handleSubmit(e)}>
-        <input type="text" placeholder="請輸入Your Name Plz" onChange={(e) => {name = e.target.value}} required />
-        <button type="submit" className='btn btn-dark' >提交</button>
+        <div style={{display: 'flex'}}>
+          <input type="text" placeholder="請輸入Your Name Plz" onChange={(e) => {name = e.target.value}} required />
+          <button type="submit" className='btn btn-dark' >提交</button>
+        </div>
       </form>
     </div >
   )

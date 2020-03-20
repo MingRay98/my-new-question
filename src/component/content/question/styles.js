@@ -18,4 +18,14 @@ export const styles = {
       fontSize: '1.5rem',
     }
   },
+  radioButton: {
+    marginLeft: '2.5%',
+    transform: 'scale(3)',
+    '@media (max-width: 700px)': {
+      transform: 'scale(2)'
+    }
+  },
+  inputLabel: {
+    marginLeft: '5%',
+  }
 }

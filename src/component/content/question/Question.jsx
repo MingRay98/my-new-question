@@ -23,13 +23,14 @@ class Question extends Component {
   }
 
   handleSubmit = (e) => {
+    e.preventDefault();
     const {userAns, question} = this.state;
     if (userAns === question.ans) {
       this.setState((ps) => ({...ps, correctAns: true}))
     } else {
       this.setState((ps) => ({...ps, correctAns: false}))
+      this.props.handleError(question.title, this.ansElement.parentNode.children[1].innerHTML)
     }
-    e.preventDefault();
   }
 
   handleLabelStyle = (para) => {
@@ -42,7 +43,7 @@ class Question extends Component {
 
   handleNextBtn = () => {
     const {question, userAns} = this.state
-    if (this.topicIndex !== 2) {
+    if (this.topicIndex !== 10) {
       this.topicIndex = this.topicIndex + 1;
       this.setState((ps) => ({...ps, correctAns: null}))
       this.setState((ps) => ({...ps, question: topic[this.topicIndex]}))
@@ -60,10 +61,10 @@ class Question extends Component {
     const title = question.title;
     const QA = question.option.map((title, index) =>
       <div>
-        <input key={index} type="radio" name="question" value={index + 1}
+        <input key={index} type="radio" name="question" value={index + 1} className={css(styles.radioButton)}
           ref={(inputElement) => index + 1 === parseInt(userAns) && (this.ansElement = inputElement)}
           onChange={(e) => this.handleOnChange(e)} required disabled={correctAns === null ? false : true} />
-        <label style={this.handleLabelStyle(index + 1)}>
+        <label className={css(styles.inputLabel)} style={this.handleLabelStyle(index + 1)}>
           {title}
         </label>
       </div>

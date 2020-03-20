@@ -1,18 +1,25 @@
-import React, {Component, useEffect} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import {css} from 'emotion';
 import {styles} from './styles';
 import {creatData} from '../../../api/api'
 
-let index = 0
-
 export const Outcome = (props) => {
 
+  const [scoreList, setScoreList] = useState(null)
+
   useEffect(() => {
-    index += 1;
-    console.log('useEffect trigger count: ' + index)
-    console.log(`name: ${props.name} score: ${props.score}`)
-    creatData(props.name, props.score)
-  })
+    creatData(props.name, props.score, props.incorrectQuestion)
+  }, [])
+
+  useEffect(() => {
+    if (props.resultList !== null)
+      setScoreList(
+        props.resultList.map((people) =>
+          Object.entries(people).map((item) =>
+            <div>{item[0]}的分數: {item[1].score}</div>
+          ))
+      )
+  }, [props.resultList])
 
   const level = () => {
     let compliment = null;
@@ -30,6 +37,7 @@ export const Outcome = (props) => {
       <div>結束評語:
         <p style={{color: 'rgb(255, 33, 44)'}}>{level()}</p>
       </div>
+      <div>{scoreList}</div>
     </div>
   )
 }

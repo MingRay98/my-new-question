@@ -10,9 +10,10 @@ export const stlyes = {
     borderRadius: '50px',
 
     icon: {
+      cursor: 'pointer',
       margin: '0 2.5% 0',
       '@media (max-width: 700px)': {
-        fontSize: '1.5rem',
+        fontSize: '1.3rem',
       },
     },
   }

@@ -29,11 +29,11 @@ export const signOut = () => {
     });
 }
 
-export const getData = () => {
+export async function getData() {
   let array = [];
   console.log('Get data from dataBase');
   const docListRef = dataBase.collection("my-new-question")
-  docListRef.get().then(docList => {
+  await docListRef.get().then(docList => {
     docList.forEach(doc => {
       array.push(doc.data())
     });
@@ -43,14 +43,13 @@ export const getData = () => {
     .catch((error) => {
       console.log(error)
     });
-
   return array
 }
 
-export const creatData = (name, score) => {
+export const creatData = (name, score, incorrectQuestion = null) => {
   dataBase.collection("my-new-question").doc("people")
     .set({
-      ans: [name, score]
+      [name]: {score: score, incorrectQuestion}
     }, {merge: true})
     .then((e) => {
       console.log('紀錄成功')
