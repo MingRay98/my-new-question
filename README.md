@@ -1,8 +1,8 @@
 ## About
 
-This project is an interesting question to test your friends.
-You can get scores about how much your friends know you.
-I tried to imitate https://buddymeter.com/.
+This project is an interesting question to test your friends.  
+You can get scores about how much your friends know you.  
+I tried to imitate https://buddymeter.com/.  
 
 ### Demo 
 
