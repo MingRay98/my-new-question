@@ -4,7 +4,9 @@ This project is an interesting question to test your friends.
 You can get scores about how much your friends know you.
 I tried to imitate https://buddymeter.com/.
 
-## Demo link: https://mingray98.github.io/dcard-image
+### Demo 
+
+link: https://mingray98.github.io/dcard-image
 
 ### How to download and pratice: 
 
