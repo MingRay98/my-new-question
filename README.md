@@ -6,7 +6,7 @@ I tried to imitate https://buddymeter.com/.
 
 ### Demo 
 
-link: https://mingray98.github.io/dcard-image
+link: https://mingray98.github.io/my-new-question
 
 ### How to download and pratice: 
 
