@@ -38,5 +38,11 @@
   },
   "devDependencies": {
     "gh-pages": "^2.2.0"
+  },
+  "overrides": {
+    "node-forge": "1.4.3"
+  },
+  "resolutions": {
+    "node-forge": "1.4.3"
   }
 }
