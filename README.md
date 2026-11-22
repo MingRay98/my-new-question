@@ -1,3 +1,5 @@
+> **Archived project.** This project is no longer maintained or updated. The public demo has been retired.
+
 ## About
 
 This project is an interesting question to test your friends.  
